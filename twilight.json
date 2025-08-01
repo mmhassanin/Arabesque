@@ -1023,6 +1023,13 @@
                     "maxLength": 30
                 }
             ]
+        },
+        {
+            "key": "45ac5466-e8b7-4c9a-953e-a392fddd6c61",
+            "title": "مكون فارغ",
+            "icon": "sicon-store",
+            "path": "home.emptycomponent",
+            "fields": []
         }
     ],
     "support_url": "https://example.com",
