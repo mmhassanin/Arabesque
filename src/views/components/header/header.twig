@@ -5,83 +5,27 @@
 | cart.items_count | int     |                                 |
 | cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
 #}
-{% set important_links = theme.settings.get('important_links') %}
-
-<header class="store-header relative bg-white border-b border-gray-100">
-    {# Top Navigation Bar #}
-    <div class="bg-white border-b border-gray-100 hidden lg:block">
-        <div class="container mx-auto px-4">
-            <nav class="flex justify-center space-x-6 py-2 text-sm">
-                <a href="/collections/all" class="hover:text-primary transition-colors">SHOP</a>
-                <a href="/collections/sets" class="hover:text-primary transition-colors">SAVE WITH SETS</a>
-                <a href="/pages/ingredients" class="hover:text-primary transition-colors">INGREDIENTS</a>
-                <a href="/pages/skin-quiz" class="hover:text-primary transition-colors">TAKE SKIN QUIZ</a>
-                <a href="/pages/about" class="hover:text-primary transition-colors">ABOUT</a>
-                <a href="/blog" class="hover:text-primary transition-colors">BLOG</a>
-            </nav>
-        </div>
-    </div>
-
-    {# Main Header #}
-    <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-20">
-            {# Mobile Menu Button #}
-            <div class="lg:hidden">
-                <button type="button" class="text-gray-700 hover:text-primary focus:outline-none">
-                    <i class="sicon-menu text-2xl"></i>
-                </button>
-            </div>
-
-            {# Desktop Navigation - Left #}
-            <nav class="hidden lg:flex space-x-6">
-                <a href="/collections/all" class="text-gray-700 hover:text-primary transition-colors">SHOP</a>
-                <a href="/collections/sets" class="text-gray-700 hover:text-primary transition-colors">SETS</a>
-                <a href="/pages/ingredients" class="text-gray-700 hover:text-primary transition-colors">INGREDIENTS</a>
-            </nav>
-
-            {# Logo - Centered #}
-            <div class="absolute left-1/2 transform -translate-x-1/2">
-                <a href="{{ store.url }}" class="block">
-                    <img src="{{ store.logo }}" alt="{{ store.name }}" class="h-10 md:h-12 w-auto">
-                    {% if is_page('index') %}
-                        <h1 class="sr-only">{{ store.name }}</h1>
-                    {% else %}
-                        <h2 class="sr-only">{{ store.name }}</h2>
-                    {% endif %}
-                </a>
-            </div>
-
-            {# Right Side Icons #}
-            <div class="flex items-center space-x-6">
-                <a href="/account" class="text-gray-700 hover:text-primary transition-colors hidden lg:block">
-                    <i class="sicon-user text-xl"></i>
-                </a>
-                <button type="button" class="text-gray-700 hover:text-primary transition-colors">
-                    <i class="sicon-search text-xl"></i>
-                </button>
-                <a href="/cart" class="text-gray-700 hover:text-primary transition-colors relative">
-                    <i class="sicon-cart text-xl"></i>
-                    {% if cart.items_count > 0 %}
-                        <span class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                            {{ cart.items_count }}
-                        </span>
-                    {% endif %}
-                </a>
+<header class="store-header">
+    <div id="mainnav" class="main-nav-container shadow-default bg-white">
+        <div class="inner bg-inherit">
+            <div class="container">
+                <div class="flex items-stretch justify-between relative">
+                    <div class="flex items-center">
+                        <a class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
+                            <i class="sicon-menu text-primary text-2xl"></i>
+                        </a>
+                        <custom-main-menu></custom-main-menu>
+                        <a class="navbar-brand custom-logo-center" href="{{ store.url }}">
+                            <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo }}" alt="{{ store.name }} logo">
+                            {% if is_page('index') %}
+                            <h1 class="sr-only">{{ store.name }}</h1>
+                          {% else %}
+                            <h2 class="sr-only">{{ store.name }}</h2>
+                          {% endif %}
+                      </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </header>
-
-{# Mobile Menu #}
-<div id="mobile-menu" class="hidden lg:hidden">
-    <!-- Mobile menu content will go here -->
-    <div class="px-2 pt-2 pb-3 space-y-1">
-        <a href="/collections/all" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">SHOP</a>
-        <a href="/collections/sets" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">SETS</a>
-        <a href="/pages/ingredients" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">INGREDIENTS</a>
-        <a href="/pages/skin-quiz" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">SKIN QUIZ</a>
-        <a href="/pages/about" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">ABOUT</a>
-        <a href="/blog" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">BLOG</a>
-        <a href="/account" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">ACCOUNT</a>
-    </div>
-</div>
