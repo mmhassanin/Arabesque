@@ -27,10 +27,9 @@
   "settings": [
     {
       "id": "header_menu_id",
-      "type": "string",
+      "type": "items",
       "format": "dropdown-list",
       "label": "قائمة رأس الصفحة (Header Menu)",
-      "description": "اختر من القوائم المتاحة في لوحة الإدارة لتظهر هنا",
       "source": "menus",
       "required": true
     },
