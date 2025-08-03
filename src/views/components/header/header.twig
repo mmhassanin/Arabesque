@@ -1,8 +1,32 @@
-{% set nav = theme.settings.get('header_menu_id') %}
-{% if nav is iterable %}
-    {% set menu_id = nav[0] %}
+{# --------------------------------------------------------
+  1) نحصل على قيمة الحقل من إعدادات الثيم            #}
+{% set raw_menu_setting = theme.settings.get('header_menu_id') %}
+
+{# --------------------------------------------------------
+  2) Salla تُعيد الـ dropdown-list على شكل Array دائمًا
+     حتى لو عنصر واحد؛ نعالج الحالتين                 #}
+{% if raw_menu_setting is iterable %}
+  {% set menu_id = raw_menu_setting|first %}
 {% else %}
-    {% set menu_id = nav %}
+  {% set menu_id = raw_menu_setting %}
 {% endif %}
 
-<salla-menu menu-type="header" menu-id="{{ menu_id }}"></salla-menu>
+{# --------------------------------------------------------
+  3) لو المستخدم لم يختر قائمة فى التخصيص نرجع للقائمة
+     الافتراضية header_menu (حتى لا يظهر الهيدر فارغ) #}
+{% if menu_id %}
+  {# ----   نستخدم Web-Component الرسمى   ---- #}
+  <salla-menu menu-type="header"
+              menu-id="{{ menu_id }}"
+              :lang="salla.lang.get()">
+  </salla-menu>
+{% else %}
+  {# ----   Fallback تلقائى   ---- #}
+  {% if header_menu and header_menu.links|length %}
+    <nav class="header-menu">
+      {% for link in header_menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+  {% endif %}
+{% endif %}
