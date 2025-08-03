@@ -26,14 +26,6 @@
   ],
   "settings": [
     {
-      "id": "header_menu_id",
-      "type": "items",
-      "format": "dropdown-list",
-      "label": "قائمة رأس الصفحة (Header Menu)",
-      "source": "menus",
-      "required": true
-    },
-    {
       "id": "squar_photo_bg_image_size",
       "type": "items",
       "format": "dropdown-list",
