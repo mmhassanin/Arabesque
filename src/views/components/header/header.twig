@@ -1,0 +1,8 @@
+{% set nav = theme.settings.get('header_menu_id') %}
+{% if nav is iterable %}
+    {% set menu_id = nav[0] %}
+{% else %}
+    {% set menu_id = nav %}
+{% endif %}
+
+<salla-menu menu-type="header" menu-id="{{ menu_id }}"></salla-menu>
